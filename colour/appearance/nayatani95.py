@@ -177,14 +177,22 @@ def XYZ_to_Nayatani95(XYZ, XYZ_n, Y_o, E_o, E_or, n=1):
     Nayatani95_Specification
         *Nayatani (1995)* colour appearance model specification.
 
-    Warning
-    -------
-    The input domain of that definition is non standard!
-
     Notes
     -----
-    -   Input *CIE XYZ* tristimulus values are normalised to domain [0, 100].
-    -   Input *CIE XYZ_n* tristimulus values are normalised to domain [0, 100].
+
+    +--------------------------------+-----------------------+---------------+
+    | **Domain**                     | **Scale - Reference** | **Scale - 1** |
+    +================================+=======================+===============+
+    | ``XYZ``                        | [0, 100]              | [0, 1]        |
+    +--------------------------------+-----------------------+---------------+
+    | ``XYZ_n``                      | [0, 100]              | [0, 1]        |
+    +--------------------------------+-----------------------+---------------+
+
+    +--------------------------------+-----------------------+---------------+
+    | **Range**                      | **Scale - Reference** | **Scale - 1** |
+    +================================+=======================+===============+
+    | ``Nayatani95_Specification.h`` | [0, 360]              | [0, 1]        |
+    +--------------------------------+-----------------------+---------------+
 
     References
     ----------

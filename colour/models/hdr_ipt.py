@@ -141,6 +141,23 @@ def XYZ_to_hdr_IPT(XYZ, Y_s=0.2, Y_abs=100, method='Fairchild 2011'):
 
     Notes
     -----
+
+    +-------------+-------------------------+---------------------+
+    | **Domain**  | **Scale - Reference**   | **Scale - 1**       |
+    +=============+=========================+=====================+
+    | ``XYZ``     | [0, 1]                  | [0, 1]              |
+    +-------------+-------------------------+---------------------+
+
+    +-------------+-------------------------+---------------------+
+    | **Range**   | **Scale - Reference**   | **Scale - 1**       |
+    +=============+=========================+=====================+
+    | ``IPT_hdr`` | ``I_hdr`` : [0, 100]    | ``I_hdr`` : [0, 1]  |
+    |             |                         |                     |
+    |             | ``P_hdr`` : [-100, 100] | ``P_hdr`` : [-1, 1] |
+    |             |                         |                     |
+    |             | ``T_hdr`` : [-100, 100] | ``T_hdr`` : [-1, 1] |
+    +-------------+-------------------------+---------------------+
+
     -   Input *CIE XYZ* tristimulus values needs to be adapted for
         *CIE Standard Illuminant D Series* *D65*.
 
@@ -179,9 +196,9 @@ def XYZ_to_hdr_IPT(XYZ, Y_s=0.2, Y_abs=100, method='Fairchild 2011'):
     with domain_range_scale('ignore'):
         LMS_prime = np.sign(LMS) * np.abs(lightness_callable(LMS, e))
 
-    IPT = dot_vector(IPT_LMS_TO_IPT_MATRIX, LMS_prime)
+    IPT_hdr = dot_vector(IPT_LMS_TO_IPT_MATRIX, LMS_prime)
 
-    return from_range_100(IPT)
+    return from_range_100(IPT_hdr)
 
 
 def hdr_IPT_to_XYZ(IPT_hdr, Y_s=0.2, Y_abs=100, method='Fairchild 2011'):
@@ -206,6 +223,25 @@ def hdr_IPT_to_XYZ(IPT_hdr, Y_s=0.2, Y_abs=100, method='Fairchild 2011'):
     -------
     ndarray
         *CIE XYZ* tristimulus values.
+
+    Notes
+    -----
+
+    +-------------+-------------------------+---------------------+
+    | **Domain**  | **Scale - Reference**   | **Scale - 1**       |
+    +=============+=========================+=====================+
+    | ``IPT_hdr`` | ``I_hdr`` : [0, 100]    | ``I_hdr`` : [0, 1]  |
+    |             |                         |                     |
+    |             | ``P_hdr`` : [-100, 100] | ``P_hdr`` : [-1, 1] |
+    |             |                         |                     |
+    |             | ``T_hdr`` : [-100, 100] | ``T_hdr`` : [-1, 1] |
+    +-------------+-------------------------+---------------------+
+
+    +-------------+-------------------------+---------------------+
+    | **Range**   | **Scale - Reference**   | **Scale - 1**       |
+    +=============+=========================+=====================+
+    | ``XYZ``     | [0, 1]                  | [0, 1]              |
+    +-------------+-------------------------+---------------------+
 
     References
     ----------

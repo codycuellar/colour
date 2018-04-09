@@ -149,6 +149,25 @@ def XYZ_to_hdr_CIELab(
 
     Notes
     -----
+
+    +----------------+-------------------------+---------------------+
+    | **Domain**     | **Scale - Reference**   | **Scale - 1**       |
+    +================+=========================+=====================+
+    | ``XYZ``        | [0, 1]                  | [0, 1]              |
+    +----------------+-------------------------+---------------------+
+    | ``illuminant`` | [0, 1]                  | [0, 1]              |
+    +----------------+-------------------------+---------------------+
+
+    +----------------+-------------------------+---------------------+
+    | **Range**      | **Scale - Reference**   | **Scale - 1**       |
+    +================+=========================+=====================+
+    | ``Lab_hdr``    | ``L_hdr`` : [0, 100]    | ``L_hdr`` : [0, 1]  |
+    |                |                         |                     |
+    |                | ``a_hdr`` : [-100, 100] | ``a_hdr`` : [-1, 1] |
+    |                |                         |                     |
+    |                | ``b_hdr`` : [-100, 100] | ``b_hdr`` : [-1, 1] |
+    +----------------+-------------------------+---------------------+
+
     -   Conversion to polar coordinates to compute the *chroma* :math:`C_{hdr}`
         and *hue* :math:`h_{hdr}` correlates can be safely performed with
         :func:`colour.Lab_to_LCHab` definition.
@@ -156,9 +175,6 @@ def XYZ_to_hdr_CIELab(
         :math:`L_{hdr}`, *chroma* :math:`C_{hdr}` and *hue* :math:`h_{hdr}`
         correlates can be safely performed with :func:`colour.LCHab_to_Lab`
         definition.
-    -   Input *CIE XYZ* tristimulus values are normalised to domain [0, 1].
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are normalised to domain [0, 1].
 
     References
     ----------
@@ -235,9 +251,24 @@ def hdr_CIELab_to_XYZ(
 
     Notes
     -----
-    -   Input *illuminant* *xy* chromaticity coordinates or *CIE xyY*
-        colourspace array are normalised to domain [0, 1].
-    -   Output *CIE XYZ* tristimulus values are normalised to range [0, 1].
+
+    +----------------+-------------------------+---------------------+
+    | **Domain**     | **Scale - Reference**   | **Scale - 1**       |
+    +================+=========================+=====================+
+    | ``Lab_hdr``    | ``L_hdr`` : [0, 100]    | ``L_hdr`` : [0, 1]  |
+    |                |                         |                     |
+    |                | ``a_hdr`` : [-100, 100] | ``a_hdr`` : [-1, 1] |
+    |                |                         |                     |
+    |                | ``b_hdr`` : [-100, 100] | ``b_hdr`` : [-1, 1] |
+    +----------------+-------------------------+---------------------+
+    | ``illuminant`` | [0, 1]                  | [0, 1]              |
+    +----------------+-------------------------+---------------------+
+
+    +----------------+-------------------------+---------------------+
+    | **Range**      | **Scale - Reference**   | **Scale - 1**       |
+    +================+=========================+=====================+
+    | ``XYZ``        | [0, 1]                  | [0, 1]              |
+    +----------------+-------------------------+---------------------+
 
     References
     ----------

@@ -218,14 +218,24 @@ def XYZ_to_CIECAM02(XYZ,
     CIECAM02_Specification
         *CIECAM02* colour appearance model specification.
 
-    Warning
-    -------
-    The input domain of that definition is non standard!
-
     Notes
     -----
-    -   Input *CIE XYZ* tristimulus values are normalised to domain [0, 100].
-    -   Input *CIE XYZ_w* tristimulus values are normalised to domain [0, 100].
+
+    +------------------------------+-----------------------+---------------+
+    | **Domain**                   | **Scale - Reference** | **Scale - 1** |
+    +==============================+=======================+===============+
+    | ``XYZ``                      | [0, 100]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+    | ``XYZ_w``                    | [0, 100]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+
+    +------------------------------+-----------------------+---------------+
+    | **Range**                    | **Scale - Reference** | **Scale - 1** |
+    +==============================+=======================+===============+
+    | ``CIECAM02_specification.h`` | [0, 360]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+    | ``CIECAM02_specification.H`` | [0, 360]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
 
     References
     ----------
@@ -359,10 +369,25 @@ def CIECAM02_to_XYZ(CIECAM02_specification,
 
     Notes
     -----
+
+    +------------------------------+-----------------------+---------------+
+    | **Domain**                   | **Scale - Reference** | **Scale - 1** |
+    +==============================+=======================+===============+
+    | ``CIECAM02_specification.h`` | [0, 360]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+    | ``CIECAM02_specification.H`` | [0, 360]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+    | ``XYZ_w``                    | [0, 100]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+
+    +------------------------------+-----------------------+---------------+
+    | **Range**                    | **Scale - Reference** | **Scale - 1** |
+    +==============================+=======================+===============+
+    | ``XYZ``                      | [0, 100]              | [0, 1]        |
+    +------------------------------+-----------------------+---------------+
+
     -   ``CIECAM02_specification`` can also be passed as a compatible argument
-        :func:`colour.utilities.as_namedtuple` definition.
-    -   Input *CIE XYZ_w* tristimulus values are normalised to domain [0, 100].
-    -   Output *CIE XYZ* tristimulus values are normalised to range [0, 100].
+        to :func:`colour.utilities.as_namedtuple` definition.
 
     References
     ----------
@@ -386,7 +411,6 @@ def CIECAM02_to_XYZ(CIECAM02_specification,
     J, C, h, _s, _Q, M, _H, _HC = as_namedtuple(CIECAM02_specification,
                                                 CIECAM02_Specification)
     h = to_domain_degrees(h)
-
     XYZ_w = to_domain_100(XYZ_w)
     _X_w, Y_w, _Z_w = tsplit(XYZ_w)
 
